@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>API Citrumsoft LEADGEN</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <h1>API Citrumsoft LEADGEN</h1>
+    <button onclick="login()">Login</button>
+
+    <button id="leadgenButton" style="margin-left:20px;" onclick="leadgen()" disabled>Leadgen</button>
+
+    <script>
+        let token = '';
+        let data = '';
+
+        function login() {
+            axios.post('https://citrumsoft.coma/api/auth-api', {
+                email: 'test21@citrum.com.ua',
+                id: '1497',
+            }, {
+                headers: {
+                    'X-Api-Key': 'ZUwlYixEJVvUtIgqIXGNV0N8Q5X2sg6hHETZDSqJ'
+                }
+
+            })
+                .then(response => {
+                    token = response.data.token;
+                    console.log('Token:', token);
+                    updateLeadgenButtonState();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function leadgen() {
+            axios.post('https://citrumsoft.com/api/leadgen', {
+                name: 'Test Lead',
+                email: 'test21@citrum.com.ua',
+                phone: '+380969005588',
+            }, {
+                headers: {
+                    'Authorization': token
+                }
+
+            })
+                .then(response => {
+                    data = response.data;
+                    console.log('Token:', data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function updateLeadgenButtonState() {
+            const leadgenButton = document.getElementById('leadgenButton');
+            leadgenButton.disabled = !token; // Disable if token is null or empty
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
