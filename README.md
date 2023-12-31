@@ -1,4 +1,4 @@
-# API Test Documentation
+# API Documentation
 
 ## Overview
 This document describes the usage of the API endpoints for user authentication and lead generation in the Citrumsoft project. The API is consumed via JavaScript using Axios for HTTP requests.
